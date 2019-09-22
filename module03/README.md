@@ -106,7 +106,7 @@ are quite handy when writing tests. All tasks below require the usage of both.
             pass
 
 * Hint - use the functions that you have defined previously. What other functions
-do you need ?
+  do you need ?
 
 ### First nth members of Fibonacci
 
