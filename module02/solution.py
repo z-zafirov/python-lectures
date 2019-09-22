@@ -45,7 +45,7 @@ def ingredient_exists(ingr, dict):
         return True
     else:
         return False
-print(f'Is ingredient {test_ingr} part of teh pancakes receipt: {ingredient_exists(test_ingr, pancake_ingredients)}')
+print(f'Is ingredient {test_ingr} part of the pancakes receipt: {ingredient_exists(test_ingr, pancake_ingredients)}')
 
 def fatten_pancakes(dict):
     fatten = dict.copy()
@@ -63,8 +63,8 @@ added_sugar = add_sugar(pancake_ingredients)
 print(f'Initial ingredient were: \n {pancake_ingredients} \n and after adding sugar it is: \n {added_sugar}')
 
 def remove_salt(dict):
-    copied_dict = dict.copy()
-    rem_salt = {k: copied_dict[k] for k in copied_dict.keys() - {'salt'}}
+    rem_salt = dict.copy()
+    del rem_salt['salt']
     return rem_salt # Returning object address instead of dictionary values...
 removed_salt = remove_salt(pancake_ingredients)
 print(f'Initial ingredient were: \n {pancake_ingredients} \n and after adding sugar it is: \n {remove_salt}')
