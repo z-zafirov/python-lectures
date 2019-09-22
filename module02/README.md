@@ -69,8 +69,8 @@ Python has special types for working with dates and times. They live in the
 * Implement a function `add_fibonacci(lst)` which extends the list of numbers with
   the next [Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number)
 * Implement a function `fib_exists(lst, n)` which returns boolean. The function checks
-if the number `n` exists in the Fibonacci sequence `lst`
+  if the number `n` exists in the Fibonacci sequence `lst`
 * Implement a function `which_fib(lst, n)` which returns integer. This is the index
-of the number `n` inside the sequence `lst` counting from 1.
+  of the number `n` inside the sequence `lst` counting from 1.
 
 **TIP:** Use the `test.py` file to validate your solution is correct.
