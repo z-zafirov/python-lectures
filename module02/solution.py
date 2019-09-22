@@ -33,48 +33,80 @@ def num_rem(a, b):
     return a % b
 print(f'For a={a} and b={b} : a % b = {num_rem(a,b)}')
 
+
 is_true = True
 is_false = False
 
-pancake_ingredients = {'flour':2, 'eggs':4, 'milk':200, 'butter':False, 'salt':0.001}
-test_ingr = 'butter'
-
-def ingredient_exists(ingr, dict):
-    ingr_list = dict.keys()
+def ingredient_exists(ingr, dict_data):
+    ingr_list = dict_data.keys()
     if ingr in ingr_list:
         return True
     else:
         return False
-print(f'Is ingredient {test_ingr} part of the pancakes receipt: {ingredient_exists(test_ingr, pancake_ingredients)}')
 
-def fatten_pancakes(dict):
-    fatten = dict.copy()
+def fatten_pancakes(dict_data):
+    fatten = dict_data.copy()
     fatten['eggs'] = 6
     fatten['butter'] = True
     return fatten
-fatten_receipt = fatten_pancakes(pancake_ingredients)
-print(f'Initial ingredient were: \n {pancake_ingredients} \n and after fatten the receipt it is: \n {fatten_receipt}')
 
-def add_sugar(dict):
-    ensugar = dict.copy()
+def add_sugar(dict_data):
+    ensugar = dict_data.copy()
     ensugar['sugar'] = 0
     return ensugar
-added_sugar = add_sugar(pancake_ingredients)
-print(f'Initial ingredient were: \n {pancake_ingredients} \n and after adding sugar it is: \n {added_sugar}')
 
-def remove_salt(dict):
-    rem_salt = dict.copy()
+def remove_salt(dict_data):
+    rem_salt = dict_data.copy()
     del rem_salt['salt']
-    return rem_salt # Returning object address instead of dictionary values...
-removed_salt = remove_salt(pancake_ingredients)
-print(f'Initial ingredient were: \n {pancake_ingredients} \n and after adding sugar it is: \n {remove_salt}')
+    return rem_salt
 
-def Fibonacci_numbers():
+pancake_ingredients = {'flour':2, 'eggs':4, 'milk':200, 'butter':False, 'salt':0.001}
+test_ingr = 'butter'
+
+print(f'\nIs ingredient \'{test_ingr}\' part of the pancakes receipt: {ingredient_exists(test_ingr, pancake_ingredients)}\n')
+print(f'>_The initial ingredients list is: {pancake_ingredients}')
+print(f'_after fatten-receipt the list is: {fatten_pancakes(pancake_ingredients)}')
+print(f'___after adding sugar the list is: {add_sugar(pancake_ingredients)}')
+print(f'_____and_after removing \'salt\' is: {remove_salt(pancake_ingredients)}')
+print(f'Note: All changes are done over a copy of the initial dict!')
+
+
+def fibonacci_numbers(upto_num):
     fb_list = [1, 1]
-    result = ''
-    for i in range(2, 12):
+    for i in range(2, upto_num):
         fb_next = fb_list[i-2] + fb_list[i-1]
         fb_list.append(fb_next)
-    result = str(fb_list)
+    return fb_list
+
+def add_fibonacci(list_data):
+    '''
+    adds the next Fibonacci number to the provided list of elements (here is result of the call to fibonacci_numbers(12))
+    '''
+    list_data.append(list_data[len(list_data)-2] + list_data[len(list_data)-1])
+    return list_data
+
+def fib_exists(list_data, ifnum_exist):
+    if ifnum_exist in list_data:
+        result = True
+    else:
+        result = False
     return result
-print(f'The Fibonacci list for \'12\' elements is: {Fibonacci_numbers()}')
+
+fibonacci12 = fibonacci_numbers(12)
+fibonacci13 = add_fibonacci(fibonacci_numbers(12))
+fbn_lookup_num = 1
+
+def which_fib(list_data, fbn_num_index): # The test result is not-thrown ValueError exception, probably fot the list_data!?
+    try:
+        if fib_exists(list_data, fbn_num_index) == True:
+            result = list_data.index(fbn_num_index)+1 # Because counting from 1
+        else:
+            raise ValueError
+    except ValueError:
+        result = f'Provided number {fbn_num_index} does not exist in the Fibonacci list with 12 elements.'
+    return result
+
+print(f'\nThe Fibonacci list for \'12\' elements is: {fibonacci12}')
+print(f'_and when added one more (Fibonacci 13): {fibonacci13}')
+print(f'\nDoes \'{fbn_lookup_num}\' exist in Fibonacci(13): {fib_exists(fibonacci13, fbn_lookup_num)}')
+print(f'\nIndex lookup for \'{fbn_lookup_num}\' in Fibonacci(12) result: {which_fib(fibonacci12, fbn_lookup_num)}')
