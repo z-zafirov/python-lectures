@@ -43,25 +43,19 @@ def count_consonants(string_given):
 print(f'Counted consonants are: {count_consonants(text_to_test)}')
 
 def prime_number(num_isprime):
-    set_flag = math.sqrt(num_isprime)
-    list_primers = []
-    dict_assessments = {}
     # Set flag - up to where to test
-    for i in range(2, int(round(set_flag))+1):
-        list_primers.append(i)
+    set_flag = math.sqrt(num_isprime)
+    # Generate list with elements to divide on
+    list_primers = [i for i in range(2, int(round(set_flag))+1)]
     # Divide to all list numbers up to the flag num and create assessment value for each
-    for i in list_primers:
-        if (num_isprime / i) - (num_isprime // i) == 0:
-            dict_assessments[i] = True
-        else:
-            dict_assessments[i] = False
+    dict_assessments = {i:(True if (num_isprime / i) - (num_isprime // i) == 0 else False) for i in list_primers}
     # Test all the assessmen values (at least one True means False end result)
     if True in dict_assessments.values():
         return False
     else:
         return True
 
-is_num_prime = 17
+is_num_prime = 18
 print(f'Is {is_num_prime} a prime: {prime_number(is_num_prime)}')
 
 
