@@ -54,7 +54,6 @@ def prime_number(num_isprime):
         return False
     else:
         return True
-
 is_num_prime = 18
 print(f'Is {is_num_prime} a prime: {prime_number(is_num_prime)}')
 
