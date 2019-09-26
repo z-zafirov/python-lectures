@@ -1,3 +1,5 @@
+import math
+
 num_to_sum = -12.3
 
 def sum_of_digits(num):
@@ -41,26 +43,25 @@ def count_consonants(string_given):
 print(f'Counted consonants are: {count_consonants(text_to_test)}')
 
 def prime_number(num_isprime):
-    prime_numbers_tofind = 100
-    not_prime = [1]
-    last_num = 0
-    # find the last num to iterate in Sieve of Eratosthenes
-    for i in range(0, prime_numbers_tofind):
-        if (i * i) <= prime_numbers_tofind:
-            last_num = i + 1
-    # Generate not prime numbers list
-    for x in range(2, last_num):
-        for y in range(2, prime_numbers_tofind):
-            if x * y not in not_prime:
-                not_prime.append(x * y)
-                not_prime.sort()
-    # Check if numebr is prime
-    if num_isprime in not_prime:
-        result = False
+    set_flag = math.sqrt(num_isprime)
+    list_primers = []
+    dict_assessments = {}
+    # Set flag - up to where to test
+    for i in range(2, int(round(set_flag))+1):
+        list_primers.append(i)
+    # Divide to all list numbers up to the flag num and create assessment value for each
+    for i in list_primers:
+        if (num_isprime / i) - (num_isprime // i) == 0:
+            dict_assessments[i] = True
+        else:
+            dict_assessments[i] = False
+    # Test all the assessmen values (at least one True means False end result)
+    if True in dict_assessments.values():
+        return False
     else:
-        result = True
-    return result
-is_num_prime = 11
+        return True
+
+is_num_prime = 17
 print(f'Is {is_num_prime} a prime: {prime_number(is_num_prime)}')
 
 
