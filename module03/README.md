@@ -119,8 +119,8 @@ are quite handy when writing tests. All tasks below require the usage of both.
 ### Fibonacci number
 
 * Implement a function, called `fib_number(n)`, which takes an integer `n` and returns a number,
-  which is formed by concatenating the first `n` Fibonacci numbers.
-  For example, if `n = 3`, the result is `112`.
+which is formed by concatenating the first `n` Fibonacci numbers.
+For example, if `n = 3`, the result is `112`.
 * Signature
 
         def fib_number(n):
@@ -132,8 +132,8 @@ do you need?
 ### Palindrome
 
 * Implement a function, called `palindrome(obj)`,
-  which takes a number or a string and checks if it is a representation is a palindrome.
-  For example, the integer `121` and the string `"kapak"` are palindromes. The function should work with both.
+which takes a number or a string and checks if it is a representation is a palindrome.
+For example, the integer `121` and the string `"kapak"` are palindromes. The function should work with both.
 * Hint - check Python's [str()](https://docs.python.org/3/library/stdtypes.html#str) function
 * Signature
 
@@ -143,7 +143,7 @@ do you need?
 ### Char Histogram
 
 * Implement a funcion, called `char_histogram(string)`, which takes a string and returns a dictionary,
-  where each key is a character from `string` and its value is the number of occurrences of that char in `string`.
+where each key is a character from `string` and its value is the number of occurrences of that char in `string`.
 * Signature
 
         def char_histogram(string):
