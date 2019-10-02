@@ -29,7 +29,47 @@ class Bill():
             self.__class__ == other.__class__ and
             self.amount == other.amount
         )
-
+'''
 t1 = Bill(1.0)
 print(t1)
-#print(t1.__eq__(t1))
+print(t1.__eq__(t1))
+'''
+
+class BatchBill():
+    def __init__(self, bills):
+        self.bills = list(bills)
+
+    def __getitem__(self, index):
+        pass
+
+    def __len__(self):
+        '''returns the number of `Bills` in the batch'''
+        return len(self.bills)
+
+    def total(self):
+        '''returns the total amount of all `Bills` in the batch'''
+        x = 0
+        for i in self.bills:
+            x = x + i
+        return x
+
+'''
+list_bills = [5, 10, 20, 50]
+bb1 = BatchBill(list_bills)
+print(bb1.__len__())
+print(bb1.total())
+'''
+
+class CashDesk():
+
+    def take_money(self, money):
+        ''' where `money` can be either `Bill` or `BatchBill` class '''
+        return None
+
+    def total(self):
+        ''' returns the total amount of money currenly in the desk '''
+        return None
+
+    def inspect(self):
+        ''' returns a table representation of the money - for each bill, how many copies of it we have '''
+        return None
