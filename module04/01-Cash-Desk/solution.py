@@ -1,4 +1,4 @@
-class Bill():
+class Bill(object):
     def __init__(self, amount):
         self.amount = amount
         try:
@@ -35,7 +35,7 @@ print(t1)
 print(t1.__eq__(t1))
 '''
 
-class BatchBill():
+class BatchBill(object):
     def __init__(self, bills):
         self.bills = list(bills)
 
@@ -60,7 +60,7 @@ print(bb1.__len__())
 print(bb1.total())
 '''
 
-class CashDesk():
+class CashDesk(object):
 
     def take_money(self, money):
         ''' where `money` can be either `Bill` or `BatchBill` class '''
