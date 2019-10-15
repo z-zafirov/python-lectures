@@ -64,11 +64,6 @@ is_num_prime = 11
 print(f'Is {is_num_prime} a prime: {prime_number(is_num_prime)}')
 
 
-<<<<<<< HEAD
-'''
-def fact_digits(n):
-'''
-=======
 
 def fact_digits(num):
     '''Calc sum of factorials of a given num'''
@@ -131,4 +126,3 @@ def char_histogram(string_given):
     result = {k:v for k, v in zip(list_chars, list_indexes)}
     return result
 print(char_histogram(string_given))
->>>>>>> b2c4761... Adding finished solution.py for module 3 (improvement needed as some tests are failing)
