@@ -39,37 +39,37 @@ print(t1.__eq__(t1))
 class BatchBill():
 
     def __init__(self, bills):
-        self.bills = list(bills)
+        if isinstance(bills, list):
+            self.bill = list(bills)
+        else:
+            self.bill = [bills]
 
     def __getitem__(self, index):
         pass
 
     def __len__(self):
         '''returns the number of `Bills` in the batch'''
-        return len(self.bills)
+        return len(self.bill)
 
     def total(self):
         '''returns the total amount of all `Bills` in the batch'''
         x = 0
-        for i in self.bills:
+        for i in self.bill:
             x = x + i
         return x
 
-'''
-list_bills = [5, 10, 20, 50]
+#'''
+b1 = int(Bill(2))
+list_bills = [b1, 5, 10, 20, 50]
 bb1 = BatchBill(list_bills)
+bb2 = BatchBill(b1)
 print(bb1.__len__())
 print(bb1.total())
-'''
+print(bb2.total())
+#'''
 
 class CashDesk():
     cash_desk = {}
-
-    def __init__(self, money):
-        if isinstance(money, list):
-            self.money = list(money)
-        else:
-            self.money = money
 
     def take_money(self, money):
         ''' where `money` can be either `Bill` or `BatchBill` class '''
