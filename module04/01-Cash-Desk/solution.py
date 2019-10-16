@@ -113,7 +113,8 @@ csh.inspect()
 
 #'''
 values = [10, 20, 50, 100, 100, 100]
-bills = [(Bill(value)) for value in values]
+bills = [int(Bill(value)) for value in values]
+#print(bills)
 
 batch = BatchBill(bills)
 
