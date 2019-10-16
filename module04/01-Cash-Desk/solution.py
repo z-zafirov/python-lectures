@@ -1,4 +1,5 @@
-class Bill(object):
+class Bill():
+
     def __init__(self, amount):
         self.amount = amount
         try:
@@ -10,7 +11,6 @@ class Bill(object):
             self.amount = f'Exception: {exc}'
         except TypeError as exc:
             self.amount = f'Exception: {exc}'
-
 
     def __int__(self):
         return int(self.amount)
@@ -29,13 +29,15 @@ class Bill(object):
             self.__class__ == other.__class__ and
             self.amount == other.amount
         )
+
 '''
 t1 = Bill(1.0)
 print(t1)
 print(t1.__eq__(t1))
 '''
 
-class BatchBill(object):
+class BatchBill():
+
     def __init__(self, bills):
         self.bills = list(bills)
 
@@ -60,16 +62,42 @@ print(bb1.__len__())
 print(bb1.total())
 '''
 
-class CashDesk(object):
+class CashDesk():
+    cash_desk = {}
+
+    def __init__(self, money):
+        if isinstance(money, list):
+            self.money = list(money)
+        else:
+            self.money = money
 
     def take_money(self, money):
         ''' where `money` can be either `Bill` or `BatchBill` class '''
+        # check the object type - bill or batch
+        # add to or increase the cash_desk list depending on the object type
         return None
 
     def total(self):
         ''' returns the total amount of money currenly in the desk '''
+        # sum the cash_desk list
         return None
 
     def inspect(self):
         ''' returns a table representation of the money - for each bill, how many copies of it we have '''
+        # return dictionary with key - bill value and values - bills count
         return None
+
+'''
+values = [10, 20, 50, 100, 100, 100]
+bills = [Bill(value) for value in values]
+
+batch = BatchBill(bills)
+
+desk = CashDesk()
+
+desk.take_money(batch)
+desk.take_money(Bill(10))
+
+print(desk.total()) # 390
+desk.inspect()
+'''
