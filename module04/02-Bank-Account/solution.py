@@ -1,4 +1,5 @@
 class BankAccount():
+    history_list = []
 
     def __init__(self, name, currency, balance=0):
         self.name = name
@@ -6,6 +7,7 @@ class BankAccount():
         try:
             if balance >= 0:
                 self.balance = balance
+                self.history_list.append(f'Created {self.name}\' with balance of {self.balance} {self.currency}.')
             elif balance < 0:
                 raise ValueError('Negative value provided for balance.')
         except ValueError  as exc:
@@ -23,6 +25,7 @@ class BankAccount():
                 raise ValueError('Negative value provided for deposit amount.')
             elif amount > 0:
                 self.balance = self.balance + amount
+                self.history_list.append(f'{self.balance} {self.currency} were deposited on {self.name}\' account.')
         except ValueError  as exc:
             self.balance = f'Exception: {exc}'
 
@@ -31,18 +34,22 @@ class BankAccount():
             return False
         elif amount > 0:
             self.balance = self.balance - amount
+            self.history_list.append(f'{self.balance} {self.currency} were withdrawn from {self.name}\' account.')
             return True
 
 #'''
-o1 = BankAccount('Jack', 'BGN', 30)
+o1 = BankAccount('Jack Doe', 'BGN', 30)
 print(str(o1))
 o1.deposit(10)
 print(str(o1))
 t1 = o1.withdraw(20)
+print(f'withdraw status for 20: {t1}')
 print(str(o1))
-print(t1)
 t2 = o1.withdraw(-10)
+print(f'withdraw status for -10: {t2}')
+print('Testing int() and str() below:')
 print(str(o1))
-print(t2)
 print(int(o1))
+print('Testing the history list below:')
+print(o1.history_list)
 #'''
