@@ -24,8 +24,8 @@ class BankAccount():
 
     def deposit(self, amount):
         try:
-            if amount < 0:
-                raise ValueError('Negative value provided for deposit amount.')
+            if amount <= 0:
+                raise ValueError('Negative or null value provided for deposit amount.')
             elif amount > 0:
                 self.balance = self.balance + amount
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -34,7 +34,7 @@ class BankAccount():
             self.balance = f'Exception: {exc}'
 
     def withdraw(self, amount):
-        if amount < 0:
+        if amount <= 0:
             return False
         elif amount > 0:
             self.balance = self.balance - amount
