@@ -7,7 +7,7 @@ class BankAccount():
         try:
             if balance >= 0:
                 self.balance = balance
-                self.history_list.append(f'Created {self.name}\' with balance of {self.balance} {self.currency}.')
+                self.history_list.append(f'Created {self.name}\'s account with balance of {self.balance} {self.currency}.')
             elif balance < 0:
                 raise ValueError('Negative value provided for balance.')
         except ValueError  as exc:
@@ -25,7 +25,7 @@ class BankAccount():
                 raise ValueError('Negative value provided for deposit amount.')
             elif amount > 0:
                 self.balance = self.balance + amount
-                self.history_list.append(f'{self.balance} {self.currency} were deposited on {self.name}\' account.')
+                self.history_list.append(f'{amount} {self.currency} were deposited on {self.name}\'s account.')
         except ValueError  as exc:
             self.balance = f'Exception: {exc}'
 
@@ -34,7 +34,7 @@ class BankAccount():
             return False
         elif amount > 0:
             self.balance = self.balance - amount
-            self.history_list.append(f'{self.balance} {self.currency} were withdrawn from {self.name}\' account.')
+            self.history_list.append(f'{amount} {self.currency} were withdrawn from {self.name}\'s account.')
             return True
 
 #'''
