@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class BankAccount():
     history_list = []
 
@@ -7,7 +9,8 @@ class BankAccount():
         try:
             if balance >= 0:
                 self.balance = balance
-                self.history_list.append(f'Created {self.name}\'s account with balance of {self.balance} {self.currency}.')
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                self.history_list.append(f'{timestamp} | Created {self.name}\'s account with balance of {self.balance} {self.currency}.')
             elif balance < 0:
                 raise ValueError('Negative value provided for balance.')
         except ValueError  as exc:
@@ -25,7 +28,8 @@ class BankAccount():
                 raise ValueError('Negative value provided for deposit amount.')
             elif amount > 0:
                 self.balance = self.balance + amount
-                self.history_list.append(f'{amount} {self.currency} were deposited on {self.name}\'s account.')
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                self.history_list.append(f'{timestamp} | {amount} {self.currency} were deposited on {self.name}\'s account.')
         except ValueError  as exc:
             self.balance = f'Exception: {exc}'
 
@@ -34,7 +38,8 @@ class BankAccount():
             return False
         elif amount > 0:
             self.balance = self.balance - amount
-            self.history_list.append(f'{amount} {self.currency} were withdrawn from {self.name}\'s account.')
+            timestamp = timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.history_list.append(f'{timestamp} | {amount} {self.currency} were withdrawn from {self.name}\'s account.')
             return True
 
 #'''
