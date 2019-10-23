@@ -59,18 +59,16 @@ o1 = BankAccount('Jack Doe', 30, 'BGN')
 o2 = BankAccount('Jack Richar', 50, 'USD')
 o3 = BankAccount('Jane Smith', 30, 'BGN')
 
-print(str(o1))
+print(f'Initial object: {str(o1)}')
 o1.deposit(10)
-print(str(o1))
-
+print(f'After deposit(10): {str(o1)}')
 t1 = o1.withdraw(20)
-print(f'withdraw status for 20: {t1}')
-print(str(o1))
+print(f'Status of withdraw(20): {t1}')
 t2 = o1.withdraw(-10)
-print(f'withdraw status for -10: {t2}')
+print(f'Status of withdraw(-10): {t2}')
 
-print(str(o1))
-print(int(o1))
+print(f'Testing str(): {str(o1)}')
+print(f'Testing int(): {int(o1)}')
 
 print(o1.history_list)
 
