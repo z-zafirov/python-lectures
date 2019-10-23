@@ -3,7 +3,7 @@ from datetime import datetime
 class BankAccount():
     history_list = []
 
-    def __init__(self, name, currency, balance=0):
+    def __init__(self, name, balance, currency):
         self.name = name
         self.currency = currency
         try:
@@ -55,10 +55,9 @@ class BankAccount():
             print('Different currencies or balance too low, transfer not successful.')
 
 
-'''
-o1 = BankAccount('Jack Doe', 'BGN', 30)
-o2 = BankAccount('Jack Richar', 'USD', 50)
-o3 = BankAccount('Jane Smith', 'BGN', 30)
+o1 = BankAccount('Jack Doe', 30, 'BGN')
+o2 = BankAccount('Jack Richar', 50, 'USD')
+o3 = BankAccount('Jane Smith', 30, 'BGN')
 
 print(str(o1))
 o1.deposit(10)
@@ -83,4 +82,3 @@ o1.transfer_to(o2, 10)
 print(str(o1))
 print(str(o2))
 print(str(o3))
-'''
