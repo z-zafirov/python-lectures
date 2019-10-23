@@ -47,12 +47,12 @@ class BankAccount():
 
     def transfer_to(self, account, t_amount):
         account_currency = account.account_currency()
-        if self.currency == account_currency:
+        if self.balance >= t_amount and self.currency == account_currency:
             self.balance = int(self.balance - t_amount)
             account.balance = int(account.balance + t_amount)
             print('Transfer successful.')
         else:
-            print('Different currencies, transfer not successful.')
+            print('Different currencies or balance too low, transfer not successful.')
 
 
 '''
