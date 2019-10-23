@@ -53,13 +53,9 @@ class BankAccount():
             print('Transfer successful.')
         else:
             print('Different currencies, transfer not successful.')
-            
+
 
 '''
-`transfer_to(account, amount)` - transfers `amount` to `account` if they both have the same currencies! Returns `True` if successful.
-'''
-
-#'''
 o1 = BankAccount('Jack Doe', 'BGN', 30)
 o2 = BankAccount('Jack Richar', 'USD', 50)
 o3 = BankAccount('Jane Smith', 'BGN', 30)
@@ -87,3 +83,4 @@ o1.transfer_to(o2, 10)
 print(str(o1))
 print(str(o2))
 print(str(o3))
+'''
