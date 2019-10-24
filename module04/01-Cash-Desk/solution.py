@@ -17,7 +17,7 @@ class Bill():
 
     def __str__(self):
         return str(self.amount)
-
+    
     def __repr__(self):
         return f'Bill({self.amount})'
 
@@ -42,7 +42,7 @@ class BatchBill():
         self.bills = list(bills)
 
     def __getitem__(self, index):
-        pass
+        return self.bills[index]
 
     def __len__(self):
         '''returns the number of `Bills` in the batch'''
@@ -64,65 +64,58 @@ print(bb1.total())
 '''
 
 class CashDesk():
-    cash_desk = {10:2, 20:1, 50:1, 100:3}
+    #cash_desk = {10:2, 20:1, 50:1, 100:3}
+    cash_desk = {10:6, 20:7, 50:8, 100:5}
 
-    @classmethod
-    def take_money(cls, money):
+    def take_money(self, money):
         ''' where `money` can be either `Bill` or `BatchBill` class '''
         # construct object regarding the input type - bill or batch
-        if isinstance(money, list):
-            money = list(money)
-        else:
-            money = [money]
+        if isinstance(money, int):
+            self.money = [money]
+        elif isinstance(money, list):
+            self.money = money
+        elif isinstance(money, Bill):
+            self.money = [int(money)]
         # remove bills from the cash_desk if there are available of that value
-        for m in money:
-            if m in cls.cash_desk.keys() and cls.cash_desk[m] > 0:
-                cls.cash_desk[m] = cls.cash_desk[m] - 1
+        for m in self.money: # Add check here if the money list contains objects instead of values!
+            if m in self.cash_desk.keys() and self.cash_desk[m] > 0:
+                self.cash_desk[m] = self.cash_desk[m] - 1
             else:
                 print(f'There are no bills of value {m} in the cash desk.')
 
-    @classmethod
-    def total(cls):
+    def total(self):
         ''' returns the total amount of money currenly in the desk '''
         # sum the cash_desk list
         result = 0
-        for x in range(len(cls.cash_desk)):
-            result = result + list(cls.cash_desk.values())[x] * list(cls.cash_desk.keys())[x]
+        for x in range(len(self.cash_desk)):
+            result = result + list(self.cash_desk.values())[x] * list(self.cash_desk.keys())[x]
         return result
 
-    @classmethod
-    def inspect(cls):
+    def inspect(self):
         ''' returns a table representation of the money - for each bill, how many copies of it we have '''
         # return dictionary with key - bill value and values - bills count
         print(f'Bills of value in the cashdesk:')
-        for i in range(len(cls.cash_desk)):
-            count = list(cls.cash_desk.values())[i]
-            value = list(cls.cash_desk.keys())[i]
+        for i in range(len(self.cash_desk)):
+            count = list(self.cash_desk.values())[i]
+            value = list(self.cash_desk.keys())[i]
             print(f'bills count: {count} | value: {value}')
 
-'''
-csh = CashDesk()
-print(csh.total())
-csh.take_money(100)
-csh.take_money([10,50])
-csh.take_money(35)
-csh.take_money(50)
-print(csh.total())
-csh.inspect()
-'''
 
-#'''
 values = [10, 20, 50, 100, 100, 100]
 bills = [int(Bill(value)) for value in values]
-#print(bills)
-
 batch = BatchBill(bills)
-
 desk = CashDesk()
 
+print(desk.total())
+desk.take_money(100) # success
+desk.take_money([10, 100]) # success
+desk.take_money(BatchBill([100, 100])) # success
+print(desk.total())
+desk.take_money(BatchBill([(Bill(10)), Bill(20)]))
+desk.take_money([Bill(10), (Bill(20))]) # FAIL!
+desk.take_money(Bill(10))
+print(desk.total())
 desk.take_money(batch)
 desk.take_money(Bill(10))
-
-print(desk.total()) # 390
+print(desk.total())
 desk.inspect()
-#'''
