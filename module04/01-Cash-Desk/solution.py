@@ -65,16 +65,14 @@ print(bb1.total())
 
 class CashDesk():
     cash_desk = {10:2, 20:1, 50:1, 100:3}
+    #cash_desk = {10:6, 20:6, 50:6, 100:6} # 1080
 
     def take_money(self, money):
         ''' where `money` can be either `Bill` or `BatchBill` class '''
-        # construct object regarding the input type - bill or batch
-        if isinstance(money, int):
-            self.money = [money]
-        elif isinstance(money, list):
-            self.money = [int(y) for y in money]
-        elif isinstance(money, Bill):
+        if isinstance(money, int) or isinstance(money, Bill):          # if money is int or Bill
             self.money = [int(money)]
+        elif isinstance(money, list) or isinstance(money, BatchBill):  # if money is list or BatchBill
+            self.money = [int(y) for y in money]
         # remove bills from the cash_desk if there are available of that value
         for m in self.money:
             if m in self.cash_desk.keys() and self.cash_desk[m] > 0:
@@ -99,24 +97,26 @@ class CashDesk():
             value = list(self.cash_desk.keys())[i]
             print(f'bills count: {count} | value: {value}')
 
-
+'''
 values = [10, 20, 50, 100, 100, 100]
-bills = [int(Bill(value)) for value in values]
-batch = list(BatchBill(bills))
+bills = [Bill(value) for value in values]
+batch = BatchBill(bills)
 desk = CashDesk()
+#'''
 '''
-print(desk.total())
-desk.take_money(50)
-desk.take_money([50, 20])
-desk.take_money(Bill(10))
-desk.take_money([Bill(10), (Bill(20))])
-desk.take_money(BatchBill([10, 20]))
-desk.take_money(BatchBill([(Bill(10)), Bill(20)]))
-print(desk.total())
+print(desk.total())                                    # 1080
+desk.take_money(50)                                    # -50
+desk.take_money([50, 20])                              # -70
+desk.take_money(Bill(10))                              # -10
+desk.take_money([Bill(10), (Bill(20))])                # -30
+desk.take_money(BatchBill([10, 20]))                   # -30
+desk.take_money(BatchBill([(Bill(10)), Bill(20)]))     # -30
+print(desk.total())                                    # 860
+#'''
 '''
-#print(list(batch))
-print(desk.total())
-desk.take_money(batch)
-desk.take_money(Bill(10))
-print(desk.total())
+print(desk.total())                                    # 860
+desk.take_money(batch)                                 # -380
+desk.take_money(Bill(10))                              # -10
+print(desk.total())                                    # 470
 desk.inspect()
+#'''
