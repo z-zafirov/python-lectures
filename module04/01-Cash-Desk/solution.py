@@ -64,8 +64,7 @@ print(bb1.total())
 '''
 
 class CashDesk():
-    #cash_desk = {10:2, 20:1, 50:1, 100:3}
-    cash_desk = {10:6, 20:7, 50:8, 100:5}
+    cash_desk = {10:2, 20:1, 50:1, 100:3}
 
     def take_money(self, money):
         ''' where `money` can be either `Bill` or `BatchBill` class '''
@@ -73,11 +72,11 @@ class CashDesk():
         if isinstance(money, int):
             self.money = [money]
         elif isinstance(money, list):
-            self.money = money
+            self.money = [int(y) for y in money]
         elif isinstance(money, Bill):
             self.money = [int(money)]
         # remove bills from the cash_desk if there are available of that value
-        for m in self.money: # Add check here if the money list contains objects instead of values!
+        for m in self.money:
             if m in self.cash_desk.keys() and self.cash_desk[m] > 0:
                 self.cash_desk[m] = self.cash_desk[m] - 1
             else:
@@ -103,17 +102,19 @@ class CashDesk():
 
 values = [10, 20, 50, 100, 100, 100]
 bills = [int(Bill(value)) for value in values]
-batch = BatchBill(bills)
+batch = list(BatchBill(bills))
 desk = CashDesk()
-
+'''
 print(desk.total())
-desk.take_money(100) # success
-desk.take_money([10, 100]) # success
-desk.take_money(BatchBill([100, 100])) # success
-print(desk.total())
-desk.take_money(BatchBill([(Bill(10)), Bill(20)]))
-desk.take_money([Bill(10), (Bill(20))]) # FAIL!
+desk.take_money(50)
+desk.take_money([50, 20])
 desk.take_money(Bill(10))
+desk.take_money([Bill(10), (Bill(20))])
+desk.take_money(BatchBill([10, 20]))
+desk.take_money(BatchBill([(Bill(10)), Bill(20)]))
+print(desk.total())
+'''
+#print(list(batch))
 print(desk.total())
 desk.take_money(batch)
 desk.take_money(Bill(10))
