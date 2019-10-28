@@ -4,7 +4,7 @@
 
 * Read Chapter 5 from Dive into Python;
 * Read [Chapter 9. Classes](https://docs.python.org/3/tutorial/classes.html)
-from the Python tutorial;
+  from the Python tutorial;
 * Read this file!
 
 
@@ -65,7 +65,7 @@ The key concepts here are:
 * The initialiser (aka constructor) method for each class is called `__init__`
 * Each method takes `self` as the first argument - this is a reference to the current instance of the class.
 * **Everything is public!** Private and protected are only a notation - something that we all agree on.
-More on private and public later.
+  More on private and public later.
 
 ## How to check if object is an instance of a class?
 
