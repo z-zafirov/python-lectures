@@ -2,21 +2,16 @@ class Bill():
 
     def __init__(self, amount):
         self.amount = amount
-        try:
-            if amount * 0 != 0 or amount % 1 != 0:
-                raise TypeError('Non-int amount provided.')
-            elif amount < 0:
-                raise ValueError('Negative amount provided.')        
-        except ValueError  as exc:
-            self.amount = f'Exception: {exc}'
-        except TypeError as exc:
-            self.amount = f'Exception: {exc}'
+        if amount * 0 != 0 or amount % 1 != 0:
+            raise TypeError('Non-int amount provided.')
+        elif amount < 0:
+            raise ValueError('Negative amount provided.')        
 
     def __int__(self):
         return int(self.amount)
 
     def __str__(self):
-        return str(self.amount)
+        return str(f'A {self.amount}$ bill')
     
     def __repr__(self):
         return f'Bill({self.amount})'
@@ -52,7 +47,7 @@ class BatchBill():
         '''returns the total amount of all `Bills` in the batch'''
         x = 0
         for i in self.bills:
-            x = x + i
+            x = x + int(i)
         return x
 
 '''
