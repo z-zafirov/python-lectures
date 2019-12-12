@@ -2,21 +2,16 @@ class Bill():
 
     def __init__(self, amount):
         self.amount = amount
-        try:
-            if amount * 0 != 0 or amount % 1 != 0:
-                raise TypeError('Non-int amount provided.')
-            elif amount < 0:
-                raise ValueError('Negative amount provided.')        
-        except ValueError  as exc:
-            self.amount = f'Exception: {exc}'
-        except TypeError as exc:
-            self.amount = f'Exception: {exc}'
+        if amount * 0 != 0 or amount % 1 != 0:
+            raise TypeError('Non-int amount provided.')
+        elif amount < 0:
+            raise ValueError('Negative amount provided.')        
 
     def __int__(self):
         return int(self.amount)
 
     def __str__(self):
-        return str(self.amount)
+        return str(f'A {self.amount}$ bill')
     
     def __repr__(self):
         return f'Bill({self.amount})'
@@ -52,7 +47,7 @@ class BatchBill():
         '''returns the total amount of all `Bills` in the batch'''
         x = 0
         for i in self.bills:
-            x = x + i
+            x = x + int(i)
         return x
 
 '''
@@ -64,10 +59,10 @@ print(bb1.total())
 '''
 
 class CashDesk():
-    cash_desk = {10:2, 20:1, 50:1, 100:3}
-    #cash_desk = {10:6, 20:6, 50:6, 100:6} # 1080
+    def __init__(self):
+        self.cash_desk = {}
 
-    def take_money(self, money):
+    def take_money(self, money): # take_money is to initiate CashDesk object!
         ''' where `money` can be either `Bill` or `BatchBill` class '''
         if isinstance(money, int) or isinstance(money, Bill):          # if money is int or Bill
             self.money = [int(money)]
@@ -75,10 +70,10 @@ class CashDesk():
             self.money = [int(y) for y in money]
         # remove bills from the cash_desk if there are available of that value
         for m in self.money:
-            if m in self.cash_desk.keys() and self.cash_desk[m] > 0:
-                self.cash_desk[m] = self.cash_desk[m] - 1
+            if m in self.cash_desk.keys():
+                self.cash_desk[m] = self.cash_desk[m] + 1
             else:
-                print(f'There are no bills of value {m} in the cash desk.')
+                self.cash_desk[m] = 1
 
     def total(self):
         ''' returns the total amount of money currenly in the desk '''
@@ -91,11 +86,15 @@ class CashDesk():
     def inspect(self):
         ''' returns a table representation of the money - for each bill, how many copies of it we have '''
         # return dictionary with key - bill value and values - bills count
-        print(f'Bills of value in the cashdesk:')
+        inspect_text =  """We have a total of 40$ in the desk
+We have the following count of bills, sorted in ascending order:"""
+
         for i in range(len(self.cash_desk)):
             count = list(self.cash_desk.values())[i]
             value = list(self.cash_desk.keys())[i]
-            print(f'bills count: {count} | value: {value}')
+            inspect_text = ''.join(f'{value}$ bills - {count}\n')
+            #print(f'{value}$ bills - {count}')
+        return inspect_text
 
 '''
 values = [10, 20, 50, 100, 100, 100]
@@ -104,14 +103,14 @@ batch = BatchBill(bills)
 desk = CashDesk()
 #'''
 '''
-print(desk.total())                                    # 1080
-desk.take_money(50)                                    # -50
-desk.take_money([50, 20])                              # -70
-desk.take_money(Bill(10))                              # -10
-desk.take_money([Bill(10), (Bill(20))])                # -30
-desk.take_money(BatchBill([10, 20]))                   # -30
-desk.take_money(BatchBill([(Bill(10)), Bill(20)]))     # -30
-print(desk.total())                                    # 860
+print(desk.total())                                    # 0
+desk.take_money(50)                                    # +50
+desk.take_money([50, 20])                              # +70
+desk.take_money(Bill(10))                              # +10
+desk.take_money([Bill(10), (Bill(20))])                # +30
+desk.take_money(BatchBill([10, 20]))                   # +30
+desk.take_money(BatchBill([(Bill(10)), Bill(20)]))     # +30
+print(desk.total())                                    # 220
 #'''
 '''
 print(desk.total())                                    # 860

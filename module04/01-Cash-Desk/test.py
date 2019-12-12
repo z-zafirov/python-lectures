@@ -45,26 +45,26 @@ class TestBatchBill(unittest.TestCase):
 class TestCashDesk(unittest.TestCase):
     def setUp(self):
         self.bill = Bill(10)
-        self.batch = BatchBill([Bill(5), Bill(10), Bill(15)])
+        self.batch = BatchBill([Bill(5), Bill(10), Bill(15)]) # 30
         self.desk = CashDesk()
 
     def test_take_money_from_bill(self):
         self.desk.take_money(self.bill)
-        self.assertEqual(self.desk.total(), 10)
+        self.assertEqual(self.desk.total(), 10) # 10:1
 
     def test_take_money_from_batch(self):
         self.desk.take_money(self.batch)
-        self.assertEqual(self.desk.total(), 30)
+        self.assertEqual(self.desk.total(), 30) # 5:1, 10:1, 15:1
 
     def test_cashdesk_total(self):
         self.desk.take_money(self.bill)
         self.desk.take_money(self.batch)
         self.assertEqual(
-            self.desk.total(), 40)
+            self.desk.total(), 40)              # 5:1, 10:2, 15:1
 
     def test_cashdesk_inspect_value(self):
         self.desk.take_money(self.bill)
-        self.desk.take_money(self.batch)
+        self.desk.take_money(self.batch)        # 5:1, 10:2, 15:1
 
         expected = """We have a total of 40$ in the desk
 We have the following count of bills, sorted in ascending order:
