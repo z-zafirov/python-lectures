@@ -40,3 +40,6 @@ class Calculator():
          print(self.num1, " / ", self.num2," = ", self.divide(self.num1, self.num2))
       else:
          print("Invalid choice", self.choice)
+
+#calc = Calculator()
+#calc.start_calc()

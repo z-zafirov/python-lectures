@@ -1,9 +1,9 @@
-import pytest
+#import pytest
 import unittest
 import calculator
 
 class CalculatorTestCase(unittest.TestCase):
-    
+
     def setUp(self):
         self.test_calc = calculator.Calculator()
 
@@ -22,3 +22,6 @@ class CalculatorTestCase(unittest.TestCase):
     def test_divide(self):
         self.result = self.test_calc.divide(4, 2)
         assert self.result == 2, 'Test failed.'
+
+if __name__ == "__main__":
+    unittest.main()
