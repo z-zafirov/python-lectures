@@ -16,7 +16,7 @@ def multiply(x, y):
 def divide(x, y):
    return x / y
 
-def run_calc():
+if __name__ == "__main__":
    print("Select operation.")
    print("1.Add")
    print("2.Subtract")
